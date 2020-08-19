@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text Editot</title>
+</head>
+<style>
+	html{
+		background: -webkit-linear-gradient(45deg,lightgreen,cyan, lightblue);
+	  	-webkit-background-clip: text;
+	  	
+	}
+
+	div{
+		background-color: white;
+		font-size: 18px;
+		margin-left: 70px;
+		margin-right: 520px;
+		border: solid black;
+	}
+
+	input.text{
+		
+		height: 100px;
+		font-size: 20px;
+		padding: 15px 0;
+	}
+
+</style>
+<body>
+	<center><img src="outline.png"></center><br>
+	<img src="pencil.png" style="position: absolute;right: 0; top: 100px">
+	<div>
+		<section style="margin-left: 60px"><br>
+		Preview:<br><br>
+		<section id="preview_text">	
+		</section></section><br><br>
+
+	</div><br><br>
+	<div><br><br>
+		<section style="margin-left: 60px">
+		Enter the text: <input type="text" id="text" size = "90" required>    <input type="submit" id="submit" onclick="previewtext()"><br><br>
+		
+		<input type="button" id="bold" value="B" style="font-weight: bold; margin-left: 200px;" onclick="fontbold()">
+		<input type="button" id="italic" value="I" style="font-style: italic; margin-left: 200px;" onclick="fontitalic()">
+		<input type="button" id="ungerline" value="u" style=" text-decoration: underline; margin-left: 200px;" onclick="fontunderline()"><br><br>
+
+		Font Size: <input type="number" id="size" min="10" max="200" onclick="fontsize()" required><br><br>
+		
+		Font Family <select id="face" onchange="fontface()"required>
+						<option value="Calibri">Calibri</option>
+		  				<option value="Georgia">Georgia</option>
+		  				<option value="Ink free">Ink free</option>
+		  				<option value="Verdana">Verdana</option>
+		  				<option value="Times New Roman">Times New Roman</option>
+		  				<option value="Arial">Arial</option>
+		  				<option value="Comic Sans MS">Comic Sans MS</option>
+		  				<option value="Lucida Console">Lucida Console</option>
+		  				<option value="Courier New">Courier New</option>
+					</select><br><br>
+		
+		Font Color <input type="color" id="color" onchange="fontcolor()"><br><br>
+
+		<section onchange="haveshadow()">Shadow:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;horizontal: <input type="number" id="hshadow" min="0" max="20" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vertical: <input type="number" id="vshadow" min="5" max="20" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blur: <input type="number" id="blur" min="0" max="20"value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shadow color: <input type="color" id="scolor" value="#000000"></section>
+		</section><br><br>
+	</div>
+</body>
+<script>
+	var text;
+	var size;
+	var face;
+	var clr;
+
+	function previewtext(){
+		text = document.getElementById("text").value;	
+		document.getElementById("preview_text").innerHTML = text;
+	}
+
+	function fontbold(){
+		document.getElementById("preview_text").style.fontWeight = "bold";
+	}
+
+	function fontitalic(){
+		document.getElementById("preview_text").style.fontStyle = "italic";
+	}
+
+	function fontunderline(){
+		document.getElementById("preview_text").style.textDecoration = "underline";
+	}
+
+	function fontsize(){
+		size = document.getElementById("size").value;
+		document.getElementById("preview_text").style.fontSize = size + 'px';
+	}
+
+	function fontface(){
+		face = document.getElementById("face").value;
+		document.getElementById("preview_text").style.fontFamily = face;
+	}
+
+	function fontcolor(){
+		clr = document.getElementById("color").value;
+		document.getElementById("preview_text").style.color = clr;
+	}
+
+	function haveshadow(){
+		horishadow = document.getElementById("hshadow").value;
+		verishadow = document.getElementById("vshadow").value;
+		blurshadow = document.getElementById("blur").value;
+		clrshadow = document.getElementById("scolor").value;
+		console.log(horishadow,verishadow,blurshadow,clrshadow)
+		document.getElementById("preview_text").style.textShadow = horishadow + "px " + verishadow + "px " + blurshadow + "px " +clrshadow;
+	}
+
+</script>
+</html>
