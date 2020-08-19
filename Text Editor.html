@@ -25,6 +25,16 @@
 		padding: 15px 0;
 	}
 
+	input[type="submit"]
+{
+    padding: 7px 20px;
+
+    
+    border: 1px solid;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
 </style>
 <body>
 	<center><img src="outline.png"></center><br>
@@ -35,13 +45,13 @@
 	</div><br><br>
 
 	<div><br><br>
-		<section>
+		<section style="margin-left: 70px">
 		
-		<input type="button" id="bold" value="B" style="font-weight: bold; margin-left: 200px;" onclick="fontbold(event)">
-		<input type="button" id="italic" value="I" style="font-style: italic; margin-left: 200px;" onclick="fontitalic(event)">
-		<input type="button" id="ungerline" value="u" style=" text-decoration: underline; margin-left: 200px;" onclick="fontunderline(event)"><br><br><br>
-
-		<input type="button" id="subscript" value="Subscript" style="margin-left: 200px;" onclick="fontsub(event)"><input type="button" id="superscript" value="Superscript" style="margin-left: 200px;" onclick="fontsuper(event)"><br><br>
+		<input type="submit" id="bold" value="B" style="font-weight: bold; margin-left: 105px;" onclick="fontbold(event)">
+		<input type="submit" id="italic" value="I" style="font-style: italic; margin-left: 50px;" onclick="fontitalic(event)">
+		<input type="submit" id="ungerline" value="u" style=" text-decoration: underline; margin-left: 50px;" onclick="fontunderline(event)">
+		<input type="submit" id="subscript" value="Subscript" style="margin-left: 50px;" onclick="fontsub(event)">
+		<input type="submit" id="superscript" value="Superscript" style="margin-left: 50px;" onclick="fontsuper(event)"><br><br><br><br>
 
 		Font Size: <select id="size" onchange="fontsize(this[this.selectedIndex].value)" required>
 						<option value="8">8</option>
@@ -60,9 +70,9 @@
 		                <option value="36">36</option>
 		                <option value="48">48</option>
 		                <option value="72">72</option>
-					</select><br><br>
+					</select>
 		
-		Font Family <select id="face" onchange="fontface(this[this.selectedIndex].value)" required>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font Family: <select id="face" onchange="fontface(this[this.selectedIndex].value)" required>
 						<option value="Calibri">Calibri</option>
 		  				<option value="Georgia">Georgia</option>
 		  				<option value="Ink free">Ink free</option>
@@ -72,15 +82,15 @@
 		  				<option value="Comic Sans MS">Comic Sans MS</option>
 		  				<option value="Lucida Console">Lucida Console</option>
 		  				<option value="Courier New">Courier New</option>
-					</select><br><br>
+					</select>
 		
-		Font Color <input type="color" id="color" onchange="fontcolor()"><br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font Color: <input type="color" id="color" onchange="fontcolor()"><br><br><br><br>
 
 		
-		<input type="button" id="undo" value="UNDO" onclick="fontundo(event)" style="margin-left: 100px;">
-		<input type="button" id="redo" value="REDO" onclick="fontredo(event)" style="margin-left: 100px;">
-		<input type="button" id="copy" value="COPY" onclick="fontcopy(event)" style="margin-left: 100px;">
-		<input type="button" id="delete" value="DELETE" onclick="fontdelete(event)" style="margin-left: 100px;">
+		<input type="submit" id="undo" value="UNDO" onclick="fontundo(event)" style="margin-left: 70px;">
+		<input type="submit" id="redo" value="REDO" onclick="fontredo(event)" style="margin-left: 100px;">
+		<input type="submit" id="copy" value="COPY" onclick="fontcopy(event)" style="margin-left: 100px;">
+		<input type="submit" id="delete" value="DELETE" onclick="fontdelete(event)" style="margin-left: 100px;">
 		<br><br>
 	</div>
 </body>
