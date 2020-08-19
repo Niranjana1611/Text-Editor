@@ -29,16 +29,13 @@
 <body>
 	<center><img src="outline.png"></center><br>
 	<img src="pencil.png" style="position: absolute;right: 0; top: 100px">
-	<div>
-		<section style="margin-left: 60px"><br>
-		Preview:<br><br>
-		<section id="preview_text" onkeydown="myFunction(event)">	
-		</section></section><br><br>
-
+	<section style="font-size: 18px; margin-left: 70px;">Enter your text:</section>
+	<div id="text" contenteditable><br>
+		
 	</div><br><br>
+
 	<div><br><br>
-		<section style="margin-left: 60px">
-		Enter the text: <input type="text" id="text" size = "90" required>    <input type="submit" id="submit" onclick="previewtext()"><br><br>
+		<section>
 		
 		<input type="button" id="bold" value="B" style="font-weight: bold; margin-left: 200px;" onclick="fontbold(event)">
 		<input type="button" id="italic" value="I" style="font-style: italic; margin-left: 200px;" onclick="fontitalic(event)">
@@ -95,11 +92,6 @@
 	var face;
 	var clr;
 	var val;
-
-	function previewtext(){
-		text = document.getElementById("text").value;	
-		document.getElementById("preview_text").innerHTML = text;
-	}
 
 	function fontundo(event){
    		document.execCommand("undo");
