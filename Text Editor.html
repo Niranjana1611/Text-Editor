@@ -32,7 +32,7 @@
 	<div>
 		<section style="margin-left: 60px"><br>
 		Preview:<br><br>
-		<section id="preview_text">	
+		<section id="preview_text" onkeydown="myFunction(event)">	
 		</section></section><br><br>
 
 	</div><br><br>
@@ -40,13 +40,32 @@
 		<section style="margin-left: 60px">
 		Enter the text: <input type="text" id="text" size = "90" required>    <input type="submit" id="submit" onclick="previewtext()"><br><br>
 		
-		<input type="button" id="bold" value="B" style="font-weight: bold; margin-left: 200px;" onclick="fontbold()">
-		<input type="button" id="italic" value="I" style="font-style: italic; margin-left: 200px;" onclick="fontitalic()">
-		<input type="button" id="ungerline" value="u" style=" text-decoration: underline; margin-left: 200px;" onclick="fontunderline()"><br><br>
+		<input type="button" id="bold" value="B" style="font-weight: bold; margin-left: 200px;" onclick="fontbold(event)">
+		<input type="button" id="italic" value="I" style="font-style: italic; margin-left: 200px;" onclick="fontitalic(event)">
+		<input type="button" id="ungerline" value="u" style=" text-decoration: underline; margin-left: 200px;" onclick="fontunderline(event)"><br><br><br>
 
-		Font Size: <input type="number" id="size" min="10" max="200" onclick="fontsize()" required><br><br>
+		<input type="button" id="subscript" value="Subscript" style="margin-left: 200px;" onclick="fontsub(event)"><input type="button" id="superscript" value="Superscript" style="margin-left: 200px;" onclick="fontsuper(event)"><br><br>
+
+		Font Size: <select id="size" onchange="fontsize(this[this.selectedIndex].value)" required>
+						<option value="8">8</option>
+		                <option value="9">9</option>
+		                <option value="10">10</option>
+		                <option value="11">11</option>
+		                <option value="12">12</option>
+		                <option value="14">14</option>
+		                <option value="16">16</option>
+		                <option value="18">18</option>
+		                <option value="20">20</option>
+		                <option value="22">22</option>
+		                <option value="24">24</option>
+		                <option value="26">26</option>
+		                <option value="28">28</option>
+		                <option value="36">36</option>
+		                <option value="48">48</option>
+		                <option value="72">72</option>
+					</select><br><br>
 		
-		Font Family <select id="face" onchange="fontface()"required>
+		Font Family <select id="face" onchange="fontface(this[this.selectedIndex].value)" required>
 						<option value="Calibri">Calibri</option>
 		  				<option value="Georgia">Georgia</option>
 		  				<option value="Ink free">Ink free</option>
@@ -60,56 +79,84 @@
 		
 		Font Color <input type="color" id="color" onchange="fontcolor()"><br><br>
 
-		<section onchange="haveshadow()">Shadow:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;horizontal: <input type="number" id="hshadow" min="0" max="20" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vertical: <input type="number" id="vshadow" min="5" max="20" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blur: <input type="number" id="blur" min="0" max="20"value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shadow color: <input type="color" id="scolor" value="#000000"></section>
-		</section><br><br>
+		
+		<input type="button" id="undo" value="UNDO" onclick="fontundo(event)" style="margin-left: 100px;">
+		<input type="button" id="redo" value="REDO" onclick="fontredo(event)" style="margin-left: 100px;">
+		<input type="button" id="copy" value="COPY" onclick="fontcopy(event)" style="margin-left: 100px;">
+		<input type="button" id="delete" value="DELETE" onclick="fontdelete(event)" style="margin-left: 100px;">
+		<br><br>
 	</div>
 </body>
 <script>
+	document.designMode = "on"; 
+
 	var text;
 	var size;
 	var face;
 	var clr;
+	var val;
 
 	function previewtext(){
 		text = document.getElementById("text").value;	
 		document.getElementById("preview_text").innerHTML = text;
 	}
 
-	function fontbold(){
-		document.getElementById("preview_text").style.fontWeight = "bold";
+	function fontundo(event){
+   		document.execCommand("undo");
+  	}
+
+  	function fontredo(event){
+   		document.execCommand("redo");
+  	}
+
+  	function fontcopy(event){
+   		document.execCommand("copy");
+  	}
+
+  	function fontdelete(event){
+   		document.execCommand("delete");
+  	}
+
+	function fontbold(event){
+   		document.execCommand("bold");
+  	}
+	
+
+	function fontitalic(event){
+		document.execCommand("italic");
 	}
 
-	function fontitalic(){
-		document.getElementById("preview_text").style.fontStyle = "italic";
+	function fontunderline(event){
+		document.execCommand("underline");
 	}
 
-	function fontunderline(){
-		document.getElementById("preview_text").style.textDecoration = "underline";
+	function fontsize(size){
+		document.execCommand("fontSize", false, size);
 	}
 
-	function fontsize(){
-		size = document.getElementById("size").value;
-		document.getElementById("preview_text").style.fontSize = size + 'px';
-	}
-
-	function fontface(){
-		face = document.getElementById("face").value;
-		document.getElementById("preview_text").style.fontFamily = face;
+	function fontface(fontName){
+		document.execCommand("fontName", false, fontName);
 	}
 
 	function fontcolor(){
 		clr = document.getElementById("color").value;
-		document.getElementById("preview_text").style.color = clr;
+		document.execCommand('styleWithCSS', false, true);
+    	document.execCommand('foreColor', false, clr);
 	}
 
-	function haveshadow(){
-		horishadow = document.getElementById("hshadow").value;
-		verishadow = document.getElementById("vshadow").value;
-		blurshadow = document.getElementById("blur").value;
-		clrshadow = document.getElementById("scolor").value;
-		console.log(horishadow,verishadow,blurshadow,clrshadow)
-		document.getElementById("preview_text").style.textShadow = horishadow + "px " + verishadow + "px " + blurshadow + "px " +clrshadow;
+	function fontsub(event){
+		document.execCommand("subscript");
 	}
+	
+	function fontsuper(event){
+		document.execCommand("superscript");
+	}
+
+	function myFunction(event) {
+  		if (event.keyCode == 16) {
+  			document.execCommand();
+  		}
+}
 
 </script>
 </html>
